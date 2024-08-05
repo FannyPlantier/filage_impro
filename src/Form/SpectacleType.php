@@ -20,12 +20,20 @@ class SpectacleType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('nbCategorie', IntegerType::class)
-            ->add('comediens', EntityType::class, [
+            ->add('categories', EntityType::class,
+                [
+                    'class' => Categorie::class,
+                    'choice_label' => 'nom',
+                    'multiple' => true,
+                    'expanded' => true
+                ])
+            ->add('comediens', EntityType::class,
+                [
                 'class' => Comedien::class,
                 'choice_label' => 'prenom',
                 'multiple' => true,
                 'expanded' => true
-            ])
+                ])
         ;
     }
 

@@ -11,6 +11,16 @@
             {{ comedien.prenom }}
         {% endfor %}
     </div>
+    <div>
+        Catégories :
+        {% for categorie in spectacle.categories %}
+            {{ categorie.nom }}
+        {% endfor %}
+    </div>
+    <div>
+        Filage :
+
+    </div>
 
     <a href="{{ path('app_spectacle_index') }}">retour à la liste des spectacles</a>
 
