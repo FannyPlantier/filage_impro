@@ -120,7 +120,7 @@ class FormValidator extends ConstraintValidator
                     // Otherwise validate a constraint only once for the first
                     // matching group
                     foreach ($groups as $group) {
-                        if (\in_array($group, $constraint->groups, true)) {
+                        if (\in_array($group, $constraint->groups)) {
                             $groupedConstraints[$group][] = $constraint;
 
                             // Prevent duplicate validation

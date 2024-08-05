@@ -18,10 +18,14 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 class FormEvent extends Event
 {
-    public function __construct(
-        private FormInterface $form,
-        protected mixed $data,
-    ) {
+    protected mixed $data;
+
+    private FormInterface $form;
+
+    public function __construct(FormInterface $form, mixed $data)
+    {
+        $this->form = $form;
+        $this->data = $data;
     }
 
     /**

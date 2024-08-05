@@ -34,8 +34,7 @@ class MoneyType extends AbstractType
                 $options['grouping'],
                 $options['rounding_mode'],
                 $options['divisor'],
-                $options['html5'] ? 'en' : null,
-                $options['input'],
+                $options['html5'] ? 'en' : null
             ))
         ;
     }
@@ -60,7 +59,6 @@ class MoneyType extends AbstractType
             'compound' => false,
             'html5' => false,
             'invalid_message' => 'Please enter a valid money amount.',
-            'input' => 'float',
         ]);
 
         $resolver->setAllowedValues('rounding_mode', [
@@ -76,8 +74,6 @@ class MoneyType extends AbstractType
         $resolver->setAllowedTypes('scale', 'int');
 
         $resolver->setAllowedTypes('html5', 'bool');
-
-        $resolver->setAllowedValues('input', ['float', 'integer']);
 
         $resolver->setNormalizer('grouping', static function (Options $options, $value) {
             if ($value && $options['html5']) {

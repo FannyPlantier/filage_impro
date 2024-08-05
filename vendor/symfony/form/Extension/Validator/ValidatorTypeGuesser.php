@@ -57,9 +57,11 @@ use Symfony\Component\Validator\Mapping\Factory\MetadataFactoryInterface;
 
 class ValidatorTypeGuesser implements FormTypeGuesserInterface
 {
-    public function __construct(
-        private MetadataFactoryInterface $metadataFactory,
-    ) {
+    private MetadataFactoryInterface $metadataFactory;
+
+    public function __construct(MetadataFactoryInterface $metadataFactory)
+    {
+        $this->metadataFactory = $metadataFactory;
     }
 
     public function guessType(string $class, string $property): ?TypeGuess

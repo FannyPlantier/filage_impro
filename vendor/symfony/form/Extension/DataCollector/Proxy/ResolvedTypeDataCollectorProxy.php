@@ -27,10 +27,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ResolvedTypeDataCollectorProxy implements ResolvedFormTypeInterface
 {
-    public function __construct(
-        private ResolvedFormTypeInterface $proxiedType,
-        private FormDataCollectorInterface $dataCollector,
-    ) {
+    private ResolvedFormTypeInterface $proxiedType;
+    private FormDataCollectorInterface $dataCollector;
+
+    public function __construct(ResolvedFormTypeInterface $proxiedType, FormDataCollectorInterface $dataCollector)
+    {
+        $this->proxiedType = $proxiedType;
+        $this->dataCollector = $dataCollector;
     }
 
     public function getBlockPrefix(): string

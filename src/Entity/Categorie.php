@@ -6,6 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Time;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -19,7 +20,7 @@ class Categorie
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $duree = null;
+    private ?time $duree = null;
 
     #[ORM\Column]
     private ?int $nbComedien = null;

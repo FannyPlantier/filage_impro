@@ -21,9 +21,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TransformationFailureExtension extends AbstractTypeExtension
 {
-    public function __construct(
-        private ?TranslatorInterface $translator = null,
-    ) {
+    private ?TranslatorInterface $translator;
+
+    public function __construct(?TranslatorInterface $translator = null)
+    {
+        $this->translator = $translator;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

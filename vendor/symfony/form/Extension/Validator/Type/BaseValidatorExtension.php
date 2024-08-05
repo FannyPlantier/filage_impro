@@ -32,7 +32,7 @@ abstract class BaseValidatorExtension extends AbstractTypeExtension
                 return [];
             }
 
-            if (!$groups) {
+            if (empty($groups)) {
                 return null;
             }
 

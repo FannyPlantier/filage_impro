@@ -26,14 +26,15 @@ use Symfony\Component\PropertyAccess\PropertyPathInterface;
 class Button implements \IteratorAggregate, FormInterface
 {
     private ?FormInterface $parent = null;
+    private FormConfigInterface $config;
     private bool $submitted = false;
 
     /**
      * Creates a new button from a form configuration.
      */
-    public function __construct(
-        private FormConfigInterface $config,
-    ) {
+    public function __construct(FormConfigInterface $config)
+    {
+        $this->config = $config;
     }
 
     /**
@@ -311,7 +312,7 @@ class Button implements \IteratorAggregate, FormInterface
      *
      * @return $this
      *
-     * @throws AlreadySubmittedException if the button has already been submitted
+     * @throws Exception\AlreadySubmittedException if the button has already been submitted
      */
     public function submit(array|string|null $submittedData, bool $clearMissing = true): static
     {

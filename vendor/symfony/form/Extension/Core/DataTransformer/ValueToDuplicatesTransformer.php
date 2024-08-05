@@ -21,9 +21,11 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
  */
 class ValueToDuplicatesTransformer implements DataTransformerInterface
 {
-    public function __construct(
-        private array $keys,
-    ) {
+    private array $keys;
+
+    public function __construct(array $keys)
+    {
+        $this->keys = $keys;
     }
 
     /**
