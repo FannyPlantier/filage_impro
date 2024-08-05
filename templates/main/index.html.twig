@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="grid grid-cols-1 justify-items-center m-auto ">
+        <button class="button flex items-center justify-center w-1/4">
+            <a href="{{ path('app_comedien_new') }}"> Créer un.e comédien.ne</a>
+        </button>
+        <button class="button flex items-center justify-center w-1/4">
+            <a href="{{ path('app_categorie_new') }}"> Créer une catégorie</a>
+        </button>
+        <button class="button flex items-center justify-center w-1/4">
+            <a href="{{ path('app_spectacle_new') }}"> Générer un spectacle</a>
+        </button>
+    </div>
+{% endblock %}
+
