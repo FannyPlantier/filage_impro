@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comedien{% endblock %}
+
+{% block body %}
+    <h1>Comedien</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ comedien.id }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ comedien.prenom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_comedien_index') }}">back to list</a>
+
+    <a href="{{ path('app_comedien_edit', {'id': comedien.id}) }}">edit</a>
+
+    {{ include('comedien/_delete_form.html.twig') }}
+{% endblock %}

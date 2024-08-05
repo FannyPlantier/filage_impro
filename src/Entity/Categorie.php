@@ -6,6 +6,7 @@ use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints\Time;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
@@ -19,8 +20,8 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?time $duree = null;
+    #[ORM\Column]
+    private ?int $duree = null;
 
     #[ORM\Column]
     private ?int $nbComedien = null;
@@ -53,12 +54,12 @@ class Categorie
         return $this;
     }
 
-    public function getDuree(): ?string
+    public function getDuree(): ?int
     {
         return $this->duree;
     }
 
-    public function setDuree(string $duree): static
+    public function setDuree(int $duree): static
     {
         $this->duree = $duree;
 
