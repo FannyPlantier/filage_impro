@@ -8,23 +8,29 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>Duree</th>
-                <th>NbComedien</th>
+                <th>Durée</th>
+                <th>Nombre de Comédien.nes</th>
+                <th>Comédien.nes</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for categorie in categories %}
             <tr>
-                <td>{{ categorie.id }}</td>
                 <td>{{ categorie.nom }}</td>
                 <td>{{ categorie.duree }}</td>
                 <td>{{ categorie.nbComedien }}</td>
                 <td>
-                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
+                    {% for comedien in categorie.comediens %}
+                        {{ comedien.prenom }}
+                        {% if not loop.last %},  {% endif %}
+                    {% else %}
+                        Aucun comédien
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">Modifier la catégorie</a>
                 </td>
             </tr>
         {% else %}

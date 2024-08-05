@@ -65,6 +65,7 @@ class CategorieController extends AbstractController
         return $this->render('categorie/edit.html.twig', [
             'categorie' => $categorie,
             'form' => $form,
+//            'comediens' => $comediens
         ]);
     }
 

@@ -17,12 +17,6 @@ class CategorieType extends AbstractType
             ->add('nom')
             ->add('duree')
             ->add('nbComedien')
-            ->add('comediens', EntityType::class, [
-                'class' => Comedien::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-                'required' => false
-            ])
         ;
     }
 

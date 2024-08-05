@@ -16,16 +16,11 @@ class ComedienType extends AbstractType
     {
         $builder
             ->add('prenom')
-            ->add('spectacles', EntityType::class, [
-                'class' => Spectacle::class,
-                'choice_label' => 'id',
-                'multiple' => true,
-                'required' => false
-            ])
             ->add('categories', EntityType::class, [
                 'class' => Categorie::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
                 'multiple' => true,
+                'expanded' => true,
                 'required' => false
             ])
         ;

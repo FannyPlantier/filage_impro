@@ -8,19 +8,24 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
+                <th>Catégorie</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for comedien in comediens %}
             <tr>
-                <td>{{ comedien.id }}</td>
                 <td>{{ comedien.prenom }}</td>
                 <td>
-                    <a href="{{ path('app_comedien_show', {'id': comedien.id}) }}">show</a>
-                    <a href="{{ path('app_comedien_edit', {'id': comedien.id}) }}">edit</a>
+                    <ul>
+                    {% for categorie in comedien.categories %}
+                       <li> {{ categorie.nom }} </li>
+                    {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <a href="{{ path('app_comedien_edit', {'id': comedien.id}) }}">Modifier les catégories</a>
                 </td>
             </tr>
         {% else %}

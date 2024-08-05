@@ -2,10 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Comedien;
 use App\Entity\Spectacle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +19,7 @@ class SpectacleType extends AbstractType
             ->add('date', null, [
                 'widget' => 'single_text',
             ])
-            ->add('nbCategorie')
+            ->add('nbCategorie', IntegerType::class)
             ->add('comediens', EntityType::class, [
                 'class' => Comedien::class,
                 'choice_label' => 'prenom',

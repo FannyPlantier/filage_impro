@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Spectacle;
 use App\Form\SpectacleType;
+use App\Repository\CategorieRepository;
 use App\Repository\SpectacleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,17 +24,18 @@ class SpectacleController extends AbstractController
     }
 
     #[Route('/new', name: 'app_spectacle_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,CategorieRepository $categorieRepository): Response
     {
         $spectacle = new Spectacle();
         $form = $this->createForm(SpectacleType::class, $spectacle);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $categories = $categorieRepository->findAll();
             $entityManager->persist($spectacle);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_spectacle_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_spectacle_show', ['id' => $spectacle->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('spectacle/new.html.twig', [
