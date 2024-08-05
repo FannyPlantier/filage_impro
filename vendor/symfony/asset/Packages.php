@@ -22,15 +22,16 @@ use Symfony\Component\Asset\Exception\LogicException;
  */
 class Packages
 {
+    private ?PackageInterface $defaultPackage;
     private array $packages = [];
 
     /**
      * @param PackageInterface[] $packages Additional packages indexed by name
      */
-    public function __construct(
-        private ?PackageInterface $defaultPackage = null,
-        iterable $packages = [],
-    ) {
+    public function __construct(?PackageInterface $defaultPackage = null, iterable $packages = [])
+    {
+        $this->defaultPackage = $defaultPackage;
+
         foreach ($packages as $name => $package) {
             $this->addPackage($name, $package);
         }
