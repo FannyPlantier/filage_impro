@@ -32,9 +32,16 @@ class Categorie
     #[ORM\ManyToMany(targetEntity: Comedien::class, mappedBy: 'categories')]
     private Collection $comediens;
 
+    /**
+     * @var Collection<int, Spectacle>
+     */
+    #[ORM\ManyToMany(targetEntity: Spectacle::class, mappedBy: 'categories')]
+    private Collection $spectacles;
+
     public function __construct()
     {
         $this->comediens = new ArrayCollection();
+        $this->spectacles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -100,6 +107,33 @@ class Categorie
     {
         if ($this->comediens->removeElement($comedien)) {
             $comedien->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Spectacle>
+     */
+    public function getSpectacles(): Collection
+    {
+        return $this->spectacles;
+    }
+
+    public function addSpectacle(Spectacle $spectacle): static
+    {
+        if (!$this->spectacles->contains($spectacle)) {
+            $this->spectacles->add($spectacle);
+            $spectacle->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpectacle(Spectacle $spectacle): static
+    {
+        if ($this->spectacles->removeElement($spectacle)) {
+            $spectacle->removeCategory($this);
         }
 
         return $this;

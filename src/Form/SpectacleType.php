@@ -20,8 +20,9 @@ class SpectacleType extends AbstractType
             ->add('nbCategorie')
             ->add('comediens', EntityType::class, [
                 'class' => Comedien::class,
-                'choice_label' => 'id',
+                'choice_label' => 'prenom',
                 'multiple' => true,
+                'expanded' => true
             ])
         ;
     }

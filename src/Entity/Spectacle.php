@@ -28,9 +28,16 @@ class Spectacle
     #[ORM\ManyToMany(targetEntity: Comedien::class, inversedBy: 'spectacles')]
     private Collection $comediens;
 
+    /**
+     * @var Collection<int, Categorie>
+     */
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'spectacles')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->comediens = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -82,6 +89,30 @@ class Spectacle
     public function removeComedien(Comedien $comedien): static
     {
         $this->comediens->removeElement($comedien);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Categorie>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): static
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }
